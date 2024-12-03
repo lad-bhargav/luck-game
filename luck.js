@@ -4,8 +4,9 @@ let logo = document.querySelector("#logo");
 let body = document.querySelector("body");
 let resetBtn = document.querySelector("#reset");
 
-let chance = true;
 let curMode = "light";
+let algo = 0;
+
 dayNight.addEventListener("click",()=>{
     if(curMode == "light"){
         dayNight.innerText = "Night";
@@ -23,30 +24,22 @@ dayNight.addEventListener("click",()=>{
     }
 })
 
-const random = () => {
-    const availableCards = Array.from(cards).filter(card => !card.disabled);
-    if (availableCards.length === 0) return;
-
-    const randomCard = availableCards[Math.floor(Math.random() * availableCards.length)];
-    randomCard.click();
-};
-
+let chance = 1;
 
 cards.forEach((card)=>{
     card.addEventListener("click",()=>{
-        if(chance){
+        if(chance = 1 && chance <=10){
             card.style.backgroundImage = "url('greenDiamond.png')";
             card.style.backgroundSize = "cover";
-            chance = false;
         }
-        else {
+        else if(chance = 11 && chance <=16){
             card.style.backgroundImage = "url('redDiamond.png')";
             card.style.backgroundSize = "cover";
-            chance = true;
-            //disableBox();
+            disableBox();
         }
        card.disabled = true;
     });
+    chance++;
 });
 
 const disableBox =()=>{
@@ -62,7 +55,7 @@ const reset = ()=>{
         card.style.backgroundImage = "";
         card.style.backgroundSize = "";
     }
-    chance = true;
+    chance =1;
 }
 
 resetBtn.addEventListener("click",reset);
